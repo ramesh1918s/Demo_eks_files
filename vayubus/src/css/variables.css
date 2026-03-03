@@ -1,0 +1,82 @@
+/* ============================================================
+   variables.css — Design Tokens & CSS Custom Properties
+   VayuBus Smart Bus Booking
+   ============================================================ */
+
+:root {
+  /* ── Background Layers ───────────────────────── */
+  --bg:       #06080f;
+  --bg2:      #0d1117;
+  --surface:  #111827;
+  --surface2: #1a2234;
+
+  /* ── Borders ─────────────────────────────────── */
+  --border:   #1f2d45;
+  --border2:  #263347;
+
+  /* ── Brand / Accent ──────────────────────────── */
+  --accent:       #00d4aa;
+  --accent-dim:   rgba(0, 212, 170, 0.12);
+  --accent-glow:  rgba(0, 212, 170, 0.25);
+  --accent-hover: rgba(0, 212, 170, 0.08);
+  --amber:        #f59e0b;
+  --amber-dim:    rgba(245, 158, 11, 0.12);
+
+  /* ── Text ────────────────────────────────────── */
+  --text:    #e2e8f0;
+  --muted:   #64748b;
+  --muted2:  #475569;
+
+  /* ── Seat Type Colours ───────────────────────── */
+  --male:        #3b82f6;
+  --male-dim:    rgba(59, 130, 246, 0.15);
+  --male-glow:   rgba(59, 130, 246, 0.30);
+
+  --female:      #ec4899;
+  --female-dim:  rgba(236, 72, 153, 0.15);
+  --female-glow: rgba(236, 72, 153, 0.30);
+
+  --child:       #f59e0b;
+  --child-dim:   rgba(245, 158, 11, 0.15);
+  --child-glow:  rgba(245, 158, 11, 0.30);
+
+  --booked-bg:   #0f172a;
+  --booked-bdr:  #1e293b;
+  --booked-txt:  #2d3748;
+
+  --selected:      #00d4aa;
+  --selected-dim:  rgba(0, 212, 170, 0.20);
+  --selected-glow: rgba(0, 212, 170, 0.35);
+
+  /* ── Status ──────────────────────────────────── */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+
+  /* ── Radius ──────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+
+  /* ── Spacing ─────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ── Shadows ─────────────────────────────────── */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.4);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.5);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,.6);
+  --shadow-accent: 0 6px 20px var(--accent-glow);
+
+  /* ── Transitions ─────────────────────────────── */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-pop:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration:  0.22s;
+}

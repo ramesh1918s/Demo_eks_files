@@ -1,0 +1,9 @@
+.git
+.gitignore
+*.md
+docs/
+.github/
+node_modules/
+*.zip
+*.tar.gz
+.DS_Store

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vayubus-service
+  labels:
+    app: vayubus
+spec:
+  type: LoadBalancer
+  selector:
+    app: vayubus
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
