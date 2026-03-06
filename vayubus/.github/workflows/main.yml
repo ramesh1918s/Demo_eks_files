@@ -8,7 +8,7 @@ on:
       - develop
       - staging
 
-  # ── Manual trigger with inputs ────────────────
+  # ── Manual trigger with inputs  select ENVS────────────────
   workflow_dispatch:
     inputs:
       environment:
