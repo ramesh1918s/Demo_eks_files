@@ -57,7 +57,7 @@ env:
   DOCKERHUB_USERNAME: shivaram1918
   DOCKERHUB_REPO:     shivaram1918/vayubus
   AWS_REGION:         us-east-2
-  EKS_CLUSTER:        education-eks-KpTuIttB
+  EKS_CLUSTER:        education-eks-ltLEc1hC
 
 jobs:
 
