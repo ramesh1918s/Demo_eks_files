@@ -1,0 +1,307 @@
+/* ============================================================
+   layout.css — Page Layout, Header, Grid
+   VayuBus Smart Bus Booking
+   ============================================================ */
+
+/* ── Ambient Background ─────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(0,212,170,.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(59,130,246,.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ─────────────────────────────────── */
+#app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  background: rgba(6,8,15,.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ── Logo ────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+}
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.logo-text .vayu    { color: var(--text); }
+.logo-text .bus-word { color: var(--accent); }
+.logo-tagline {
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── Step Indicator ──────────────────────────── */
+.steps {
+  display: flex;
+  align-items: center;
+}
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: all var(--duration) var(--ease-out);
+}
+.step-item.active { color: var(--accent); background: var(--accent-dim); }
+.step-item.done   { color: var(--text); }
+.step-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 700;
+  transition: all var(--duration);
+  flex-shrink: 0;
+}
+.step-item.done .step-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+.step-connector {
+  width: 24px; height: 1px;
+  background: var(--border);
+  transition: background var(--duration);
+}
+.step-connector.active { background: var(--accent); }
+
+.hdr-status {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* ── Main Grid ───────────────────────────────── */
+#app-main {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+.left-col { min-width: 0; }
+
+/* ── Card ────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.card-head {
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title svg { width: 14px; height: 14px; flex-shrink: 0; }
+.card-body { padding: 22px; }
+
+.badge-info {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Search Grid ─────────────────────────────── */
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 160px 120px auto;
+  gap: 12px;
+  align-items: end;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field select, .field input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 0.86rem;
+  appearance: none;
+  transition: border-color var(--duration), box-shadow var(--duration);
+}
+.field select:focus, .field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.btn-search {
+  background: var(--accent);
+  color: #000;
+  border-radius: var(--radius-sm);
+  padding: 9px 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: all var(--duration);
+}
+.btn-search:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-accent);
+}
+
+/* ── Bus Card ────────────────────────────────── */
+.bus-list { display: flex; flex-direction: column; gap: 10px; }
+.bus-card {
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all var(--duration);
+  position: relative;
+  overflow: hidden;
+}
+.bus-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background var(--duration);
+}
+.bus-card:hover { border-color: var(--accent); transform: translateX(2px); }
+.bus-card:hover::before { background: var(--accent); }
+.bus-card.selected { border-color: var(--accent); background: var(--accent-hover); }
+.bus-card.selected::before { background: var(--accent); }
+
+.bus-name  { font-family:'Syne',sans-serif; font-weight:700; font-size:0.92rem; }
+.bus-meta  { font-size:0.72rem; color:var(--muted); margin-top:3px; font-family:'JetBrains Mono',monospace; }
+.bus-tags  { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+.tag {
+  font-size: 0.62rem; letter-spacing: .5px;
+  padding: 2px 6px; border-radius: 3px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted); font-weight: 500;
+}
+.bus-time-block { text-align: center; }
+.t-time  { font-family:'JetBrains Mono',monospace; font-size:1.3rem; font-weight:500; line-height:1; }
+.t-label { font-size:0.65rem; color:var(--muted); letter-spacing:1px; margin-top:3px; }
+.bus-dur  { font-size:0.75rem; color:var(--muted); padding:0 4px; text-align:center; white-space:nowrap; }
+.bus-price-block { text-align:right; }
+.price      { font-family:'Syne',sans-serif; font-weight:800; font-size:1.5rem; color:var(--accent); letter-spacing:-0.5px; }
+.price-sub  { font-size:0.7rem; color:var(--accent); opacity:.7; margin-top:1px; }
+.avail      { font-size:0.7rem; font-weight:600; margin-top:4px; }
+.avail.good { color: var(--success); }
+.avail.low  { color: var(--warning); }
+
+/* ── Route Map ───────────────────────────────── */
+#mapCanvas {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.route-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.route-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px; top: 24px; bottom: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--amber), var(--male), var(--accent));
+}
+.route-stop {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 0;
+}
+.stop-dot {
+  position: absolute;
+  left: -28px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 10px;
+}
+.stop-dot.origin { background: var(--accent); border-color: var(--accent); }
+.stop-dot.dest   { background: var(--male);   border-color: var(--male); }
+.stop-dot.via    { width:12px; height:12px; left:-24px; margin-top:5px; border-color:var(--muted2); }
+.stop-info   { flex: 1; }
+.stop-name   { font-weight: 600; font-size: 0.92rem; }
+.stop-sub    { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+.stop-time   { font-family:'JetBrains Mono',monospace; font-size:0.85rem; font-weight:500; color:var(--accent); min-width:52px; text-align:right; }
+.stop-badge  { font-size:0.65rem; letter-spacing:1px; padding:2px 6px; border-radius:3px; font-weight:600; text-transform:uppercase; }
+.badge-origin { background:rgba(0,212,170,.15); color:var(--accent); }
+.badge-dest   { background:rgba(59,130,246,.15); color:var(--male); }
+.badge-via    { background:var(--surface2); color:var(--muted); }

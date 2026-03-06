@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vayubus
+  namespace: vayubus
+  labels:
+    app: vayubus
+    version: "1.0.0"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vayubus
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: vayubus
+        version: "1.0.0"
+    spec:
+      serviceAccountName: vayubus-sa
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: vayubus
+
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values: [vayubus]
+                topologyKey: kubernetes.io/hostname
+
+      containers:
+        - name: vayubus
+          # Replace with your ECR image URI:
+          image: shivaram1918/vayubus:v1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+
+          envFrom:
+            - configMapRef:
+                name: vayubus-config
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+
+          livenessProbe:
+            httpGet: { path: /health, port: 8080 }
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet: { path: /health, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 2
+
+          startupProbe:
+            httpGet: { path: /health, port: 8080 }
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            failureThreshold: 10
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop: [ALL]
+
+      terminationGracePeriodSeconds: 30

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vayubus-deployment
+  labels:
+    app: vayubus
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vayubus
+  template:
+    metadata:
+      labels:
+        app: vayubus
+    spec:
+      containers:
+        - name: vayubus
+          image: shivaram1918/vayubus:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

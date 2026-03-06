@@ -1,0 +1,66 @@
+/* ============================================================
+   responsive.css — Media Queries & Responsive Adjustments
+   VayuBus Smart Bus Booking
+   ============================================================ */
+
+/* ── Tablet: ≤ 1024px ─────────────────────────── */
+@media (max-width: 1024px) {
+  #app-main {
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+  }
+}
+
+/* ── Tablet: ≤ 960px ──────────────────────────── */
+@media (max-width: 960px) {
+  #app-main {
+    grid-template-columns: 1fr;
+  }
+  .summary-sticky {
+    position: static;
+  }
+  .search-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .btn-search {
+    grid-column: span 2;
+  }
+}
+
+/* ── Mobile: ≤ 680px ──────────────────────────── */
+@media (max-width: 680px) {
+  #app-header {
+    padding: 0 16px;
+    height: 56px;
+  }
+  .step-item span:not(.step-dot) { display: none; }
+  .hdr-status { display: none; }
+  .logo-tagline { display: none; }
+
+  #app-main { padding: 16px 14px 40px; }
+
+  .search-grid { grid-template-columns: 1fr; }
+  .btn-search  { grid-column: span 1; }
+
+  .bus-card { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .seat-map-wrap { flex-direction: column; }
+  .seat-type-panel { width: 100%; min-width: unset; }
+
+  .confirm-box { padding: 24px 18px; }
+  .confirm-title { font-size: 1.4rem; }
+}
+
+/* ── Small Mobile: ≤ 380px ───────────────────── */
+@media (max-width: 380px) {
+  .seat-controls { flex-direction: column; align-items: flex-start; }
+  .seat-legend   { margin-left: 0; }
+  .bus-card      { grid-template-columns: 1fr; }
+}
+
+/* ── Print ───────────────────────────────────── */
+@media print {
+  #app-header { position: static; }
+  .summary-sticky { position: static; }
+  .btn-cta, .btn-search, .btn-close-modal { display: none; }
+}
